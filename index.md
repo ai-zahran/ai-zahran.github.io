@@ -3,12 +3,14 @@
 # Edit theme's home layout instead if you wanna make some changes
 # See: https://jekyllrb.com/docs/themes/#overriding-theme-defaults
 layout: home
+title: Ahmed Ismail
 ---
 ## Background
 
 <img class="profile-img" style="float: right; border:10px solid black; border-radius: 50%; margin: 15px; padding: 5px; box-shadow: 8px 8px 10px #aaa;" src="https://media.licdn.com/dms/image/C5103AQEtLL8ar04Ruw/profile-displayphoto-shrink_200_200/0?e=1525453200&v=alpha&t=YdvH25QBIFIBO0ULYyYXThlrQNXyHUl4DwKMgEkZII8">
 
-**Warning! Hyperlinks to VERY BAD WEBSITE DESIGNS down there!**
+**Warning! Hyperlinks to VERY BAD WEBSITE DESIGNS ahead!**
+
 Hi there,
 
 I am Ahmed Ismail, a research assistant at
@@ -40,4 +42,4 @@ friends!
 
 ## Skills
 **Languages**: Python, C++, Shell scripting
-**Tools**: Kaldi, Python libraries(Numpy, Pandas, Tensorflow, Keras, Scikit-learn), Git, Bash
+**Tools**: Kaldi, Python libraries (Numpy, Pandas, Tensorflow, Keras, Scikit-learn), Git, Bash
