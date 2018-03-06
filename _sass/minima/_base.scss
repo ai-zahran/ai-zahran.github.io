@@ -240,3 +240,13 @@ table {
     border: 1px solid $grey-color-light;
   }
 }
+
+.profile-img {
+  float: right;
+  border:10px solid black;
+  border-radius: 50%;
+  margin: 15px;
+  padding: 5px;
+  background-color: #94c3ff66;
+  box-shadow: 8px 8px 10px #aaa;
+}

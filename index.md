@@ -6,7 +6,7 @@ layout: home
 ---
 ## Background
 
-<img style="float: right; border:10px solid black; border-radius: 50%; margin: 15px; padding: 5px; box-shadow: 8px 8px 10px #aaa;" src="https://media.licdn.com/dms/image/C5103AQEtLL8ar04Ruw/profile-displayphoto-shrink_200_200/0?e=1525453200&v=alpha&t=YdvH25QBIFIBO0ULYyYXThlrQNXyHUl4DwKMgEkZII8">
+<img class="profile-img" style="float: right; border:10px solid black; border-radius: 50%; margin: 15px; padding: 5px; box-shadow: 8px 8px 10px #aaa;" src="https://media.licdn.com/dms/image/C5103AQEtLL8ar04Ruw/profile-displayphoto-shrink_200_200/0?e=1525453200&v=alpha&t=YdvH25QBIFIBO0ULYyYXThlrQNXyHUl4DwKMgEkZII8">
 
 **Warning! Hyperlinks to VERY BAD WEBSITE DESIGNS down there!**
 Hi there,
