@@ -7,7 +7,7 @@ title: Ahmed Ismail
 ---
 ## Background
 
-<img class="profile-img" style="float: right; border:10px solid black; border-radius: 50%; margin: 15px; padding: 5px; box-shadow: 8px 8px 10px #aaa;" src="/assets/profile-img.jpg">
+<img class="profile-img" src="/assets/images/profile-img.jpg">
 
 **Warning! Hyperlinks to VERY BAD WEBSITE DESIGNS ahead!**
 

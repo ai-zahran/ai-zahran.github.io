@@ -21,6 +21,11 @@ url: "localhost:4000" # the base hostname & protocol for your site, e.g. http://
 github_username:  ai-zahran
 linkedin_username: ahmed.ismail.zahran
 
+# Author infor
+name: 'Sam Yonski'
+author: 'Sam Yonski'
+author_image: "/assets/images/profile-img.jpg"
+
 # Build settings
 markdown: kramdown
 theme: minima
