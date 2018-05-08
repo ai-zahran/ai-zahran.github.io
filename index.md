@@ -13,7 +13,7 @@ title: Ahmed Ismail
 
 Hi there,
 
-I am Ahmed Ismail, a research assistant at [Cairo University's Faculty of Engineering](http://eng.cu.edu.eg/en/), and a Masters student at [Cairo University's Faculty of Computers and Informatics](https://www.fci.cu.edu.eg/). My main interest is **machine learning** and its applications in the field of **computational linguistics**.
+I am Ahmed Ismail, a research assistant at [Cairo University's Faculty of Engineering](http://eng.cu.edu.eg/en/), and a Master's student at [Cairo University's Faculty of Computers and Informatics](https://www.fci.cu.edu.eg/). My main interest is **machine learning** and its applications in the field of **computational linguistics**.
 {: .text-justify}
 
 I am currently working on [*Senteech*](http://www.dataplusme.com/senteech.html), a collaborative research project with [DataPlusME](http://www.dataplusme.com/) that aims to develop a **speech emotion recognizer** to aid call centers easily find angry calls within their huge data sets.
