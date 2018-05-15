@@ -1,10 +1,10 @@
 ---
 layout: post
-title:  "Weel 1: Language Modeling"
-date:   2018-05-15 00:00:00 +0200
+title:  "Week 1: Language Modeling"
+date:   2018-05-14 00:00:00 +0200
 categories: jekyll update
 tags: speech arabic gsoc redhenlab language-model varikn
-published: False
+published: True
 ---
 
 This is my first week coding my Google Summer of Code [project](https://summerofcode.withgoogle.com/projects/#5542722241298432) with [Red Hen Lab](www.redhenlab.org/). My first task will be preparing the language model to use for decoding.
@@ -16,20 +16,20 @@ This is my first week coding my Google Summer of Code [project](https://summerof
 ### What is lattice rescoring?
 -->
 
-# Aalto system's language model
+## Aalto system's language model
 
-## Baseline system: n-gram model
+### Baseline system: n-gram model
 
 For the baseline, we will use *[VariKN](https://github.com/vsiivola/variKN)* [1] to train an n-gram model. The authors of the Aalto system [2] trained an n-gram model with **8 million n-gram contexts** (they tuned the pruning parameters to reach this number of n-gram contexts). More than **7 million** of the contexts were of order three or lower.
 
 The lexicon we will use for decoding is grapheme-based.
 
-## Improving the Language Model: The RNNLM
+### Improving the Language Model: The RNNLM
 
 The second task will be to improve the language modeling component. To do this, we will train a *recurrent neural network language model (RNNLM)* using [TheanoLM](https://github.com/senarvi/theanolm) [3]. This model is to be used for lattice rescoring.
 <!--include definition of RNNLM here-->
 
-## The RNNLM architecture
+### The RNNLM architecture
 
 The authors proposed the following architecture for the RNNLM.
 
@@ -49,7 +49,7 @@ The authors proposed the following architecture for the RNNLM.
 
 **So, Wish us luck!**
 
-# **References**
+### **References**
 
 
 [1] Vesa Siivola, Teemu Hirsimaki, and Sami Virpioja, “On growing and pruning Kneser-Ney smoothed n-gram models,” in *IEEE Transactions on Audio, Speech & Language
