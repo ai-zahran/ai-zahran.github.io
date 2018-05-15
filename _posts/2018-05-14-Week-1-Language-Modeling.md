@@ -35,12 +35,12 @@ The authors proposed the following architecture for the RNNLM.
 
 |Module|Characteristics|
 |---|---|
-| Projection layer | **200 neurons** for character and subword models <br> **300 neurons** for the word model |
+| Projection layer | **200 neurons** for character and subword models<br>**300 neurons** for the word model |
 | A hidden LSTM layer | **1000 neurons** for charachter and subword models<br>**1500 neurons** for word model |
 | Output layer| Uses **Softmax** activation function<br>Layer size depends vocabulary size<br>Words and subwords have to be grouped into classes using **the exchange word clustering algorithm** (the authors used 2000 classes)|
 | Training method | **Backpropagation** |
 | Optimization algorithm | **Adagrad** |
-| Minibatch size | <ul> <li> **64** for character and subword models </li> <li> **32** for word models </li> </ul> |
+| Minibatch size | **64** for character and subword models<br>**32** for word models |
 | Sequence length for each minibatch | **100** for character model<br>**50** for sub-word model<br>**25** for word model |
 | Initial learning rate | **0.1** |
 | Dropout rate | **0.2** |
