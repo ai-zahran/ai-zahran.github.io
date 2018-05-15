@@ -3,8 +3,8 @@ layout: post
 title:  "Spending this summer in GSoC with Red Hen Lab"
 date:   2018-05-09 00:00:00 +0200
 categories: jekyll update
-tags: speech arabic gsoc redhenlab
-# published: False
+tags: speech arabic gsoc redhenlab language-modeling
+published: True
 ---
 
 ![GSoC]({{ "/assets/images/GSoC.png" }})
@@ -12,7 +12,7 @@ tags: speech arabic gsoc redhenlab
 
 I am thrilled to announce that I will be participating in **[GSoC](https://summerofcode.withgoogle.com/)** this year with **[Red Hen Lab](www.redhenlab.org/)**. My mentors for this project will include Professor [Mark Turner](http://markturner.org/) and Professor [Ahmed Abdelfattah](https://shams.academia.edu/AhmedAbdelFattah), among others.
 
-My project for this summer, titled [Arabic Speech Recognition and Dialect Identification](https://summerofcode.withgoogle.com/projects/#5542722241298432) will involve building a speech recognition system for dialectic Arabic, which we will use to transcribe the Television news broadcast captured by Red Hen in Egypt. It also includes building a system for Arabic dialect identification. To do both tasks, we intend to follow the architectures proposed by the winning teams in the [MGB-3 Arabic tasks](http://www.mgb-challenge.org/arabic.html)[^fn1].
+My project for this summer, titled [Arabic Speech Recognition and Dialect Identification](https://summerofcode.withgoogle.com/projects/#5542722241298432) will involve building a speech recognition system for dialectic Arabic, which we will use to transcribe the Television news broadcast captured by Red Hen in Egypt. It also includes building a system for Arabic dialect identification. To do both tasks, we intend to follow the architectures proposed by the winning teams in the [MGB-3 Arabic tasks](http://www.mgb-challenge.org/arabic.html)[1].
 
 MGB is a challenge that involves producing state-of-the-art systems for speech recognition and multiple other speech-related tasks in order to be used on TV broadcast recordings (i.e.: the challenge organizers are telling you, *"Hey, this is the cleanest data you could ever work on. You got no excuses"*).
 
@@ -45,9 +45,11 @@ Thank you for reading, and wish us luck!
 # **References**
 
 
-[1] A. Ali, S. Vogel, and S. Renals, “Speech recognition challenge in the wild: Arabic MGB-3,” 2017 IEEE Automatic Speech Recognition and Understanding Workshop (ASRU), 2017.  
+[1] A. Ali, S. Vogel, and S. Renals, “Speech recognition challenge in the wild: Arabic MGB-3,” in *2017 IEEE Automatic Speech Recognition and Understanding Workshop (ASRU)*, 2017.
+
 [2] P. Smit, S. Gangireddy, S. Enarvi, S. Virpioja, and
-M. Kurimo, “Aalto system for the 2017 Arabic multigenre brodcast challenge,” in ASRU, 2017.  
+M. Kurimo, “Aalto system for the 2017 Arabic multigenre brodcast challenge,” in *ASRU*, 2017.
+
 [3] S. Shon, A. Ali, and J. Glass, “MIT-QCRI Arabic dialect
 identification system for the 2017 multi-genre broadcast
-challenge,” in ASRU, 2017.
+challenge,” in *ASRU*, 2017.
