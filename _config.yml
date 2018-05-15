@@ -27,7 +27,7 @@ author: 'Ahmed Ismail'
 author_image: "/assets/images/profile-img.jpg"
 
 # Build settings
-markdown: kramdown
+markdown: rdiscount
 theme: minima
 plugins:
   - jekyll-feed
