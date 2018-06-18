@@ -60,12 +60,3 @@ Next, I uploaded the image to the HPC and ran it. While compiling Kaldi, I notic
 
 ## Coming up
 In the next post, we will talk about the datasets we are going to use.
-
-### **References**
-
-[1] P. Smit, S. Gangireddy, S. Enarvi, S. Virpioja, and M. Kurimo, "Aalto system for the 2017 Arabic multigenre brodcast challenge," in *ASRU*, 2017.
-
-[2] Vesa Siivola, Teemu Hirsimäki and Sami Virpioja,
-"On Growing and Pruning Kneser-Ney Smoothed N-Gram Models", IEEE
-Transactions on Speech, Audio and Language Processing,
-15(5):1617-1624, 2007
