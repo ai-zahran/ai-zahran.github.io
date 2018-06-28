@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Week 7: Dialect Identification"
-date:   2018-06-24 00:00:00 +0200
+date:   2018-06-28 00:00:00 +0200
 categories: jekyll update
 tags: gsoc redhenlab dialect-identification
 published: True
