@@ -37,7 +37,7 @@ The authors of the MIT-QCRI system propsed a Siamese neural network with two par
 \\[ \overline{w_d} = \frac{1}{n_d} \sum_{i=1}^{n_d}w_i^d \\]
 Where \\( n_d \\) is the number of utterances in this dialect, and \\( w_i^d \\) is utterance \\( i \\) in dialect \\( d \\). To use the development data for adaptation, the authors used an interpolation approach:
 \\[ \overline{w_d^{Inter}} = (1 - \gamma)\overline{w_d^{TRN}} + \gamma\overline{w_d^{DEV}} \\]
-where \\( w_d^{TRN} \\) is the training set, \\( w_d^{DEV} \\) is the test set and \\( \gamma \\) is the interpolation parameter. The authors also used a recursive whitening transformation [2] on i-vector.
+where \\( w_d^{TRN} \\) is the training set, \\( w_d^{DEV} \\) is the test set and \\( \gamma \\) is the interpolation parameter. The authors also used a recursive whitening transformation [2] on i-vectors.
 
 ![Figure 1: Siamese neural network architecture of the MIT-QCRI system]({{ "/assets/images/2018-06-24-Week-7-Dialect-Identification/siamese_neural_network.png" | absolute_url }}){: .center-image}
 
