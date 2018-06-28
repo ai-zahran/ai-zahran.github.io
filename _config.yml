@@ -30,7 +30,6 @@ author_image: "/assets/images/profile-img.jpg"
 theme: minima
 plugins:
   - jekyll-feed
-markdown: redcarpet
 
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
