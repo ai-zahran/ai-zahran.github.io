@@ -25,8 +25,10 @@ PATH=$PATH:/usr/local/cuda/bin
 To run the image, I'd first have to request a node from the cluster using Slurm's `srun` command:
 
 ```bash
-srun -p gpu -C gpuk40 --gres=gpu:1 --pty bash
+srun -p gpu -C gpuk40 --gres=gpu:1 --pty --mem=<memory_size> bash
 ```
+where the `mem` option specifies the real memory size required per node in megabytes. I set this option to 4 GB using `--mem=4096`. This is necessary to compile Kaldi, as the some processes need lots of memory.
+
 Then, I'd load the Singularity module:
 
 ```bash
@@ -36,10 +38,11 @@ module load singularity/2.5.1
 and finally, I'd run a shell environment in the Singularity image:
 
 ```bash
-singularity shell -w --nv <image_name>.img
+singularity shell -w --nv <image_name>.img -H </path/to/new/home/>
 ```
 The `--nv` flag allows Singularity to leverage the Nvidia GPU on the host machine. All it requires is a recent Nvidia driver on the host operating system.
 The `-w` flag informs Singularity that the image should be writable, i.e.: changes made to the image in this session will be persistent.
+The `-H` option specifies the directory Singularity will use as home (Singularity uses your */home/usr* directory as home by default).
 
 ### The main problem
 Singularity does a great job at simplifying the process of installing new software. During the setup process on an HPC, the main problem is always caused by the fact that the user should not have superuser privileges, while package managers like *apt-get* and *yum* require superuser privileges to work. The user then has to contact the system admin, who handles the installation process.
