@@ -9,23 +9,13 @@ published: True
 
 In Weeks 9 and 10, I continued to work on the speech recognition system, while working in parallel in the dialect identification task.
 
-For the speech recognition task, I finished training the Time Delay Neural Network (TDNN) locally, and left the training process to continue on Case HPC. I am goind to write a follow-up post to detail the TDNN building process.
+## TDNN
 
-For the dialect identification task, I implemented the Siamese neural network and the dialect enrollment algorithm. I will talk about these algorithms in this post.
+For the speech recognition task, I finished training the [Time Delay Neural Network (TDNN)](https://github.com/ai-zahran/arabic_asr_and_di/blob/dev/arabic_asr/local/nnet3/run_tdnn.sh) locally, and left the training process to run on Case HPC. The TDNN uses LDA-based i-vectors and MFCC's.
 
-## Dialect Enrollment
-Dialect enrollment is obtained through computing a model called the *i-vector dialect model* for each dialect. This model is computed through the following equation.
+Next step will be adapting the model to the development data in dialectic Arabic.
 
-$$\overline{w_d} = \frac{1}{d}\sum_{i=1}^{n_d}{w_i^d}$$
+## Arabic DI
+For the dialect identification task, I implemented the [Siamese neural network](https://github.com/ai-zahran/arabic_asr_and_di/blob/arabic_di/arabic_dialect_identification/dialect_enrollment.py) and the [dialect enrollment algorithm](https://github.com/ai-zahran/arabic_asr_and_di/blob/arabic_di/arabic_dialect_identification/dialect_enrollment.py). The authors reported 0.83 as the interpolation parameter value achieving the best accuracy. For the training process, the authors used a random sampling approach to form the training examples, where each example includes an i-vector of an utterance, a dialect model for a certain dialect, and a label that details whether they are a match or a mismatch.
 
-where $w_i^d$ is the i-vector of utterance $i$ belonging to dialect $d$, and $n_d$ is the number of utterances belonging to dialect $d$.
-
-### Interpolation
-
-In order to manifest the in-domain development data for the purpose of adaptation, the authors used a simple interpolation approach, with a tunable hyper-parameter $\gamma$:
-
-$$\overline{w_d^{Inter}} = (1-\gamma )\overline{w_d^{TRN}} + \gamma {\overline{w_d^{DEV}}}$$
-
-The authors reported 0.83 as the value for $\gamma$ achieving the best performance on the test set.
-
-## Siamese Neural Network
+Next step will be to implement *length normalization* and *recursive-whitening* 
