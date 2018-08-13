@@ -44,12 +44,12 @@ The pipeline contains code to take a wave file (or a group of wave files within 
 ## Utils
 The *utils* directory contains a number of useful utilities to be used in the training process.
 
-`utils/ctm2srt.py`: Produces SRT subtitile files from a CTM file (the file format in which decoding results are stored).
-`utils/Kaldi_lex2variKN_vocab.py`: Produces a VariKN vocabulary file from a Kaldi lexicon.
-`utils/kaldi_text2grapheme_lexicon.py`: Extracts a grapheme lexicon from a Kaldi text file.
-`utils/Kaldi_text2plain_text.py`: Transforms a Kaldi text file to plain text through removing utterance ID's.
-`utils/Kaldi_text2variKN_corpus.py`: Transforms a Kaldi text to a VariKN corpus through removing utterance ID's and adding VariKN start and end tags.
-`utils/ldc_corpus2kaldi_dir.py`: Transforms an LDC corpus to a Kaldi data directory.
-`utils/plain_text2variKN_corpus.py`: Transforms plain text to a VariKN corpus through adding start and end tags.
-`utils/remove_test_speakers.py`: Removes speakers in one Kaldi directory from another Kaldi directory (useful for splitting a data set into training and test sets, in which it helps to avoid speakers being shared between sets.).
-`utils/transliteration.py`: Contains functions to perform transliteration on a sentence.
+- `utils/ctm2srt.py`: Produces SRT subtitile files from a CTM file (the file format in which decoding results are stored).
+- `utils/Kaldi_lex2variKN_vocab.py`: Produces a VariKN vocabulary file from a Kaldi lexicon.
+- `utils/kaldi_text2grapheme_lexicon.py`: Extracts a grapheme lexicon from a Kaldi text file.
+- `utils/Kaldi_text2plain_text.py`: Transforms a Kaldi text file to plain text through removing utterance ID's.
+- `utils/Kaldi_text2variKN_corpus.py`: Transforms a Kaldi text to a VariKN corpus through removing utterance ID's and adding VariKN start and end tags.
+- `utils/ldc_corpus2kaldi_dir.py`: Transforms an LDC corpus to a Kaldi data directory.
+- `utils/plain_text2variKN_corpus.py`: Transforms plain text to a VariKN corpus through adding start and end tags.
+- `utils/remove_test_speakers.py`: Removes speakers in one Kaldi directory from another Kaldi directory (useful for splitting a data set into training and test sets, in which it helps to avoid speakers being shared between sets.).
+- `utils/transliteration.py`: Contains functions to perform transliteration on a sentence.
