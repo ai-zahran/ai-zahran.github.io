@@ -47,7 +47,7 @@ Check this [post]({{ site.baseurl }}{% post_url 2018-08-13-Arabic-DI %}) for mor
  - [Week 8: Gale Arabic on Case HPC]({{ site.baseurl }}{% post_url 2018-07-09-Week-8-Gale_Arabic_on_Case_HPC %})
  - [Weeks 9 & 10: Dialect Identification Base]({{ site.baseurl }}{% post_url 2018-07-25-Weeks-9&10-Dialect-Identification-Base %})
  
- ## Acknowledgement
+## Acknowledgement
  
 A huge thanks goes to my GSoC mentors, Professor Mark Turner, Professor Ahmed Abdel-Fattah, Professor Michael Pacchioli and all the Red Hen Lab contributors who were very helpful and supportive throughout the project.
 
