@@ -15,11 +15,11 @@ In this page we will summarize the components of the Arabic ASR project, includi
 The project uses Kaldi for training a speech recognizer on Arabic data. This section contains information about the acoustic and language modeling approaches used.
 
 ### Language model
-Language modelling is done using [VariKN](https://github.com/vsiivola/variKN). The script `produce_n_gram_lm.sh` produces an n-gram language model from a VariKN corpus (to convert a Kaldi text or plain text to VariKN corpus, see utilities `Kaldi_text2variKN_corpus.py` and `plain_text2variKN_corpus.py` below, respectively).
+Language modeling is done using [VariKN](https://github.com/vsiivola/variKN). The script `produce_n_gram_lm.sh` produces an n-gram language model from a VariKN corpus (to convert a Kaldi text or plain text to VariKN corpus, see utilities `Kaldi_text2variKN_corpus.py` and `plain_text2variKN_corpus.py` below, respectively).
 
 ### Acoustic model
 The acoustic model is created using [Kaldi](http://kaldi-asr.org/). The code to create the model is found in `run.sh`. Note that to create the model, Kaldi requires `run.sh`, the `utils` directory and `local` directory to be placed within a Kaldi example inside the Kaldi example directory (e.g.: *kaldi_root/egs/arabic_asr/s5*).
-The acoustic modelling component builds multiple models sequentially, using the alignments from each model as input to the next model. The program performs the following tasks in the order specified:
+The acoustic modeling component builds multiple models sequentially, using the alignments from each model as input to the next model. The program performs the following tasks in the order specified:
 
 1. Extract features for the whole data set
 2. Split the data set into training and test sets with speaker independence
@@ -39,12 +39,12 @@ The acoustic modelling component builds multiple models sequentially, using the 
 16. Train a TDNN using features and i-vectors from the training set
 
 ## The pipeline
-The pipeline contains code to take a wave file (or a group of wave files within a directory), and output SRT subtitile files for each of the files. The `pipeline/run.sh` builds an example directory for the file(s) specified, extracts features and finally performs decoding to output subtitle files.
+The pipeline contains code to take a wave file (or a group of wave files within a directory), and output SRT subtitle files for each of the files. The `pipeline/run.sh` builds an example directory for the file(s) specified, extracts features and finally performs decoding to output subtitle files.
 
 ## Utils
 The *utils* directory contains a number of useful utilities to be used in the training process.
 
-- `utils/ctm2srt.py`: Produces SRT subtitile files from a CTM file (the file format in which decoding results are stored).
+- `utils/ctm2srt.py`: Produces SRT subtitle files from a CTM file (the file format in which decoding results are stored).
 - `utils/Kaldi_lex2variKN_vocab.py`: Produces a VariKN vocabulary file from a Kaldi lexicon.
 - `utils/kaldi_text2grapheme_lexicon.py`: Extracts a grapheme lexicon from a Kaldi text file.
 - `utils/Kaldi_text2plain_text.py`: Transforms a Kaldi text file to plain text through removing utterance ID's.
