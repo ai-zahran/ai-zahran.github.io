@@ -22,10 +22,6 @@ I am currently working on [*Senteech*](http://www.dataplusme.com/senteech.html),
 I also previously worked with [RDI-eg](http://www.rdi-eg.com/) on [the *Hafss* project](http://www.rdi-eg.com/Technologies/speech.htm), a pronunciation learning application for Islam's Holy Book (the Quran). In this project, I explored various deep neural network architectures with the amazing [Kaldi Toolkit](kaldi-asr.org/) to enhance the recogniton accuracy of the application.
 {: .text-justify}
 
-**Side projects**: Checkout [*Deer*](https://github.com/abahmed/Deer), an [Electron](https://electronjs.org/)-based note-taking application I am building with a group of friends! It is in a very early phase, and we are trying to make it a friendly environment for new contributers to hack on.  
-So feel free to code and get in touch, we've got plenty of plans to come!!
-{: .text-justify}
-
 ## Skills
 
 **Languages**: Python, C++, Shell scripting
