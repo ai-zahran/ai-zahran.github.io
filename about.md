@@ -21,7 +21,7 @@ emotion recognizer to aid call centers easily find angry calls within
 their huge data sets.
 
 I also previously worked with [RDI](http://www.rdi-eg.com/) on
-[the Hafss project](http://www.rdi-eg.com/Technologies/speech.htm),
+[the Hafss project](http://www.rdi-eg.com/hafss),
 a pronunciation learning application for Islam's Holy Book
 (the Quran). In this project, I explored various deep neural network
 architectures with the amazing [Kaldi Toolkit](kaldi-asr.org/)
