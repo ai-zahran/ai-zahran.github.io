@@ -16,10 +16,10 @@ I am Ahmed Ismail, a data scientist at [DataPlusME](https://www.dataplusme.com/)
 
 ## Notable projects:
 
-- Worked as a research assistant at [Cairo University's Faculty of Engineering](eng.cu.edu.eg/en/) on project [*Senteech*](http://www.dataplusme.com/senteech.html), a collaborative research project with [DataPlusME](http://www.dataplusme.com/) that aims to develop a **speech emotion recognizer** to aid call centers in the process of finding angry calls in their huge data sets.
+- Worked as a research assistant at [Cairo University's Faculty of Engineering](eng.cu.edu.eg/en/) on project [*Senteech*](http://www.dataplusme.com/senteech.html), a collaborative research project with [DataPlusME](http://www.dataplusme.com/). Senteech is a **speech emotion recognizer** that aids call centers in the process of finding angry calls in their huge data sets.
 {: .text-justify}
 
-- Worked with [RDI-eg](http://www.rdi-eg.com/) on [the *Hafss* project](http://www.rdi-eg.com/Technologies/speech.htm), a pronunciation learning application for Islam's Holy Book (the Quran). In this project, I explored various deep neural network architectures with the amazing [Kaldi Toolkit](kaldi-asr.org/) to enhance the recogniton accuracy of the application.
+- Worked with [RDI-eg](http://www.rdi-eg.com/) on [the *Hafss* project](http://www.rdi-eg.com/Technologies/speech.htm), a pronunciation learning application for Islam's Holy Book (the Quran).
 {: .text-justify}
 
 ## Skills
