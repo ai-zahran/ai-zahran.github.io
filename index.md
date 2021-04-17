@@ -13,7 +13,7 @@ Hi there,
 
 I am Ahmed Ismail, a natural language processing engineer at [Agolo](https://www.agolo.com/) and a Master's student at [Cairo University's Faculty of Computers and Informatics](https://www.fci.cu.edu.eg/).
 
-My main interests are **machine learning** and its applications in **computational linguistics**. I also have experience in creating data visualizations with [Tableau](https://www.tableau.com/) and building ETL pipelines using [Alteryx](https://www.alteryx.com/).
+My main interests are **machine learning** and its applications in **computational linguistics**. I also happen to have some experience in creating data visualizations with [Tableau](https://www.tableau.com/) and building ETL pipelines using [Alteryx](https://www.alteryx.com/). You can check [my Tableau Public page](https://public.tableau.com/profile/ahmed.ismail5077) for a sample of the dashboards I built using Tableau.
 {: .text-justify}
 
 ## Notable projects:
