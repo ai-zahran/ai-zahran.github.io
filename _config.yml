@@ -43,4 +43,4 @@ plugins:
 #   - vendor/gems/
 #   - vendor/ruby/
 
-exclude: [vendor, about.md]
+exclude: [vendor]
