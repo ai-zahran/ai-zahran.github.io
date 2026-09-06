@@ -4,6 +4,8 @@ import ThroughLine from '../components/ThroughLine.astro';
 import RoleItem from '../components/RoleItem.astro';
 import PublicationItem from '../components/PublicationItem.astro';
 import PostCard from '../components/PostCard.astro';
+import SocialIcon from '../components/SocialIcon.astro';
+import type { IconName } from '../components/SocialIcon.astro';
 import { roles, skills } from '../data/experience';
 import { publications } from '../data/publications';
 import { site, links } from '../data/site';
@@ -39,8 +41,13 @@ const quickLinks = links.filter((link) => link.label !== 'Email');
         {
           quickLinks.map((link) => (
             <li>
-              <a href={link.href} class="link">
-                {link.label}
+              <a
+                href={link.href}
+                class="social"
+                aria-label={`${link.label} — ${link.handle}`}
+                rel="me"
+              >
+                <SocialIcon name={link.label as IconName} />
               </a>
             </li>
           ))
@@ -49,7 +56,10 @@ const quickLinks = links.filter((link) => link.label !== 'Email');
     </div>
 
     <figure class="portrait">
-      <img src={site.portrait} alt="Ahmed Zahran" width="640" height="640" loading="eager" />
+      <picture>
+        <source srcset={site.portraitWebp} type="image/webp" />
+        <img src={site.portrait} alt="Ahmed Zahran" width="800" height="800" loading="eager" />
+      </picture>
     </figure>
   </section>
 
@@ -195,16 +205,35 @@ const quickLinks = links.filter((link) => link.label !== 'Email');
     list-style: none;
     display: flex;
     flex-wrap: wrap;
-    gap: 1.25rem;
+    gap: 0.5rem;
+    /* The icons carry their own padding, so the row is pulled back level with
+       the text above it. */
     margin-block-start: 1.5rem;
-    font-family: var(--font-mono);
-    font-size: 0.8125rem;
+    margin-inline-start: -0.6rem;
+  }
+
+  .social {
+    display: grid;
+    place-items: center;
+    /* Padding rather than a fixed size, so the target grows with the glyph and
+       stays comfortable on touch. */
+    padding: 0.6rem;
+    color: var(--muted);
+    border-radius: 4px;
+    transition: color 150ms ease, background 150ms ease;
+  }
+
+  .social:hover,
+  .social:focus-visible {
+    color: var(--accent);
+    background: var(--accent-soft);
   }
 
   .portrait {
     justify-self: start;
-    max-width: 20rem;
-    width: 100%;
+    width: min(100%, 17rem);
+    /* The ring sits outside the photo, so it needs room inside the grid cell. */
+    padding: 0.55rem;
   }
 
   .portrait img {
@@ -213,8 +242,12 @@ const quickLinks = links.filter((link) => link.label !== 'Email');
     height: auto;
     aspect-ratio: 1;
     object-fit: cover;
-    border-radius: 3px;
-    border: 1px solid var(--rule);
+    border-radius: 50%;
+    /* A hairline edge plus a wider halo of the page's own accent, so the circle
+       reads as a deliberate element rather than a cropped rectangle. */
+    box-shadow:
+      0 0 0 1px var(--rule),
+      0 0 0 0.55rem var(--accent-soft);
     /* Nudges the photo toward the page's violet cast without tinting the face. */
     filter: saturate(0.95);
   }
@@ -258,7 +291,10 @@ const quickLinks = links.filter((link) => link.label !== 'Email');
     }
 
     .portrait {
-      max-width: 19rem;
+      /* The figure sits in an auto-sized grid column, so it needs an explicit
+         width: without one it shrink-wraps to the image's intrinsic size and
+         the intended size never applies. */
+      width: 20rem;
       justify-self: end;
       /* Sits level with the name rather than the eyebrow above it. */
       margin-block-start: 3.5rem;

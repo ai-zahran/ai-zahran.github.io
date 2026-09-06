@@ -5,7 +5,13 @@ export const site = {
   url: 'https://ai-zahran.github.io',
   tagline:
     'AI/ML engineer building production LLM systems — multi-agent orchestration, retrieval over messy enterprise data, and knowledge graphs.',
+  /*
+   * `portrait` doubles as the Open Graph image, so it stays a JPEG at a stable
+   * path; `portraitWebp` is the smaller variant the page itself prefers. Both
+   * are 800px-square derivatives generated from src/assets/profile-img.jpg.
+   */
   portrait: '/assets/images/profile-img.jpg',
+  portraitWebp: '/assets/images/profile-img.webp',
   email: 'ahmed.ismail.zahran@gmail.com',
 } as const;
 
