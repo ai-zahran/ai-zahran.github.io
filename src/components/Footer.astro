@@ -1,0 +1,75 @@
+---
+import { links, site } from '../data/site';
+
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="shell inner">
+    <div class="say">
+      <h2 class="section-title">Get in touch</h2>
+      <p class="measure">
+        I’m always glad to talk about retrieval, agents, knowledge graphs, or Arabic speech.
+      </p>
+    </div>
+
+    <ul class="channels">
+      {
+        links.map((link) => (
+          <li>
+            <span class="eyebrow">{link.label}</span>
+            <a href={link.href} class="link">
+              {link.handle}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+
+    <p class="colophon meta">
+      © {year} {site.name} · {site.location} · Built with Astro, hosted on GitHub Pages ·
+      <a href="/rss.xml" class="link">RSS</a>
+    </p>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    border-top: 1px solid var(--rule);
+    background: var(--surface-sunk);
+  }
+
+  .inner {
+    padding-block: clamp(3rem, 6vw, 4.5rem);
+  }
+
+  .say p {
+    color: var(--muted);
+    margin-block-start: 0.6rem;
+  }
+
+  .channels {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+    gap: 1.25rem 2rem;
+    margin-block: 2.5rem;
+  }
+
+  .channels li {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  .channels a {
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+    overflow-wrap: anywhere;
+  }
+
+  .colophon {
+    padding-block-start: 1.5rem;
+    border-top: 1px solid var(--rule);
+  }
+</style>

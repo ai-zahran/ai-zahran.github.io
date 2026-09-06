@@ -1,0 +1,201 @@
+---
+import { publications } from '../data/publications';
+import type { Role } from '../data/experience';
+
+interface Props {
+  role: Role;
+  /** Compact form for the home page: no bullets, no provenance. */
+  compact?: boolean;
+}
+
+const { role, compact = false } = Astro.props;
+const produced = (role.produced ?? [])
+  .map((id) => publications.find((p) => p.id === id))
+  .filter((p) => p !== undefined);
+---
+
+<article class="role">
+  <p class="span meta">{role.start} — {role.end}</p>
+
+  <div class="body">
+    <h3 class="title">
+      {role.title}<span class="at">, </span>
+      {
+        role.orgHref ? (
+          <a href={role.orgHref} class="link org">
+            {role.org}
+          </a>
+        ) : (
+          <span class="org">{role.org}</span>
+        )
+      }
+      {role.orgNote && <span class="org-note">({role.orgNote})</span>}
+    </h3>
+
+    {
+      !compact && (
+        <ul class="points">
+          {role.points.map((point) => (
+            <li>
+              {point.text}
+              {point.link && (
+                <>
+                  {' '}
+                  <a href={point.link.href} class="link point-link">
+                    {point.link.label} ↗
+                  </a>
+                </>
+              )}
+            </li>
+          ))}
+        </ul>
+      )
+    }
+
+    {compact && <p class="lead-point">{role.points[0]?.text}</p>}
+
+    {
+      role.stack && (
+        <ul class="stack">
+          {role.stack.map((item) => (
+            <li class="chip">{item}</li>
+          ))}
+        </ul>
+      )
+    }
+
+    {
+      !compact && produced.length > 0 && (
+        <ul class="produced">
+          {produced.map((pub) => (
+            <li>
+              <span class="edge-label eyebrow">Led to</span>
+              <a href={pub.href} class="link">
+                {pub.title}
+              </a>
+              <span class="meta"> · {pub.venue}</span>
+            </li>
+          ))}
+        </ul>
+      )
+    }
+  </div>
+</article>
+
+<style>
+  .role {
+    display: grid;
+    gap: 0.4rem 2.5rem;
+    padding-block: 2rem;
+    border-top: 1px solid var(--rule);
+  }
+
+  .span {
+    white-space: nowrap;
+    padding-block-start: 0.3rem;
+  }
+
+  .title {
+    font-size: 1.25rem;
+    font-weight: 600;
+  }
+
+  .org {
+    color: var(--accent);
+  }
+
+  .org-note {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+
+  .points {
+    list-style: none;
+    margin-block-start: 0.9rem;
+    max-width: 44rem;
+  }
+
+  .points li {
+    position: relative;
+    padding-inline-start: 1.1rem;
+  }
+
+  .points li + li {
+    margin-block-start: 0.5rem;
+  }
+
+  .points li::before {
+    content: '';
+    position: absolute;
+    inset-inline-start: 0;
+    inset-block-start: 0.72em;
+    width: 0.3rem;
+    height: 1px;
+    background: var(--accent);
+  }
+
+  .point-link {
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    color: var(--accent);
+    white-space: nowrap;
+  }
+
+  .lead-point {
+    color: var(--muted);
+    margin-block-start: 0.5rem;
+    max-width: 40rem;
+  }
+
+  .stack {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-block-start: 1.1rem;
+  }
+
+  /*
+   * Provenance edge: this role produced this paper. Drawn in the through-line's
+   * amber so the connection reads as the same device used on the home page.
+   */
+  .produced {
+    list-style: none;
+    margin-block-start: 1.25rem;
+    max-width: 44rem;
+  }
+
+  .produced li {
+    position: relative;
+    padding-inline-start: 1.4rem;
+    padding-block-start: 0.25rem;
+    font-size: 0.9375rem;
+  }
+
+  .produced li::before {
+    content: '';
+    position: absolute;
+    inset-inline-start: 0.15rem;
+    inset-block: -0.35rem auto;
+    height: 1.1rem;
+    width: 0.75rem;
+    border-inline-start: 1px solid var(--signal);
+    border-block-end: 1px solid var(--signal);
+    border-end-start-radius: 4px;
+  }
+
+  .edge-label {
+    color: var(--signal);
+    margin-inline-end: 0.45rem;
+  }
+
+  @media (min-width: 46rem) {
+    .role {
+      grid-template-columns: 10rem 1fr;
+    }
+  }
+</style>

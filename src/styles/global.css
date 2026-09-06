@@ -1,0 +1,386 @@
+@import '@fontsource-variable/bricolage-grotesque';
+@import '@fontsource-variable/source-serif-4';
+@import '@fontsource/ibm-plex-mono/400.css';
+@import '@fontsource/ibm-plex-mono/500.css';
+@import 'katex/dist/katex.min.css';
+
+@import 'tailwindcss';
+
+/*
+ * Palette: the colour ramp of a spectrogram — deep indigo through plum to
+ * amber. Plum is the accent; amber is reserved for the through-line, so it
+ * only appears where the career's provenance is being drawn.
+ */
+@theme {
+  --font-display: 'Bricolage Grotesque Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-body: 'Source Serif 4 Variable', ui-serif, Georgia, serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, monospace;
+
+  --width-page: 72rem;
+  --width-wide: 60rem;
+  --width-prose: 40rem;
+}
+
+:root {
+  color-scheme: light;
+
+  --bg: #f7f5fa;
+  --surface: #ffffff;
+  --surface-sunk: #efebf6;
+  --text: #1a1626;
+  --muted: #5c5470;
+  --rule: #ddd6e8;
+  --accent: #a32d6e;
+  --accent-soft: #f6e6ef;
+  --signal: #96570e;
+  --selection: #f4d7e6;
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+
+  --bg: #14111f;
+  --surface: #1e1a2e;
+  --surface-sunk: #191527;
+  --text: #ede9f5;
+  --muted: #a69cbc;
+  --rule: #302a46;
+  --accent: #f07eb4;
+  --accent-soft: #2a1b2c;
+  --signal: #e8a93c;
+  --selection: #4a2340;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    color-scheme: dark;
+
+    --bg: #14111f;
+    --surface: #1e1a2e;
+    --surface-sunk: #191527;
+    --text: #ede9f5;
+    --muted: #a69cbc;
+    --rule: #302a46;
+    --accent: #f07eb4;
+    --accent-soft: #2a1b2c;
+    --signal: #e8a93c;
+    --selection: #4a2340;
+  }
+}
+
+/* ---------- base ---------- */
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  font-synthesis-weight: none;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--selection);
+  color: var(--text);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+a {
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* ---------- layout primitives ---------- */
+
+.shell {
+  width: 100%;
+  max-width: var(--width-page);
+  margin-inline: auto;
+  padding-inline: clamp(1.25rem, 5vw, 3.5rem);
+}
+
+.measure {
+  max-width: var(--width-prose);
+}
+
+.section {
+  padding-block: clamp(3.5rem, 8vw, 6.5rem);
+}
+
+.section + .section {
+  border-top: 1px solid var(--rule);
+}
+
+/* ---------- type roles ---------- */
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.display {
+  font-family: var(--font-display);
+  font-size: clamp(2.75rem, 1.2rem + 6vw, 5.25rem);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 0.95;
+}
+
+.page-title {
+  font-size: clamp(2rem, 1.2rem + 3vw, 3.25rem);
+}
+
+.section-title {
+  font-size: clamp(1.375rem, 1.1rem + 1.1vw, 1.875rem);
+}
+
+.lede {
+  font-size: clamp(1.125rem, 1rem + 0.55vw, 1.4rem);
+  line-height: 1.55;
+  color: var(--text);
+  text-wrap: pretty;
+}
+
+.meta {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  color: var(--muted);
+  letter-spacing: 0.01em;
+}
+
+/* ---------- links ---------- */
+
+.link {
+  text-decoration: underline;
+  text-decoration-color: color-mix(in oklab, var(--accent) 45%, transparent);
+  text-underline-offset: 0.18em;
+  text-decoration-thickness: 1px;
+  transition: text-decoration-color 150ms ease, color 150ms ease;
+}
+
+.link:hover {
+  color: var(--accent);
+  text-decoration-color: var(--accent);
+}
+
+/* ---------- chips ---------- */
+
+.chip {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  line-height: 1.5;
+  padding: 0.15rem 0.5rem;
+  border: 1px solid var(--rule);
+  border-radius: 2px;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+/* ---------- prose (blog posts) ---------- */
+
+.prose {
+  max-width: var(--width-prose);
+}
+
+.prose > * + * {
+  margin-block-start: 1.35em;
+}
+
+.prose h2 {
+  font-size: 1.6rem;
+  margin-block-start: 2.4em;
+  margin-block-end: -0.35em;
+}
+
+.prose h3 {
+  font-size: 1.25rem;
+  margin-block-start: 2em;
+  margin-block-end: -0.5em;
+}
+
+.prose a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+  text-decoration-thickness: 1px;
+  text-decoration-color: color-mix(in oklab, var(--accent) 45%, transparent);
+}
+
+.prose a:hover {
+  text-decoration-color: var(--accent);
+}
+
+.prose ul,
+.prose ol {
+  padding-inline-start: 1.4em;
+}
+
+.prose ul {
+  list-style: disc;
+}
+
+.prose ol {
+  list-style: decimal;
+}
+
+.prose li + li {
+  margin-block-start: 0.5em;
+}
+
+.prose li::marker {
+  color: var(--accent);
+}
+
+.prose blockquote {
+  border-inline-start: 2px solid var(--accent);
+  padding-inline-start: 1.1em;
+  color: var(--muted);
+  font-style: italic;
+}
+
+.prose img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  background: var(--surface);
+}
+
+.prose figure,
+.prose p > img {
+  margin-inline: auto;
+}
+
+.prose hr {
+  border: 0;
+  border-top: 1px solid var(--rule);
+  margin-block: 2.5em;
+}
+
+.prose code {
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+  background: var(--surface-sunk);
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  padding: 0.1em 0.35em;
+}
+
+.prose pre {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  line-height: 1.6;
+  padding: 1rem 1.1rem;
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  overflow-x: auto;
+}
+
+.prose pre code {
+  background: none;
+  border: 0;
+  padding: 0;
+  font-size: inherit;
+}
+
+/* Wide content must scroll inside itself, never the page. */
+.prose .table-scroll {
+  overflow-x: auto;
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+}
+
+.prose table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 0.9375rem;
+}
+
+.prose th,
+.prose td {
+  text-align: start;
+  padding: 0.55rem 0.85rem;
+  border-bottom: 1px solid var(--rule);
+  vertical-align: top;
+}
+
+.prose th {
+  font-family: var(--font-display);
+  font-weight: 600;
+  background: var(--surface-sunk);
+  white-space: nowrap;
+}
+
+.prose tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.prose .katex-display {
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-block: 0.4em;
+}
+
+.prose sup a,
+.prose .footnotes {
+  font-size: 0.9em;
+}
+
+.prose figure {
+  margin-block: 2em;
+}
+
+.prose figcaption,
+.prose .caption {
+  margin-block-start: 0.7em;
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: var(--muted);
+  text-align: center;
+}
+
+.prose .caption a {
+  color: var(--accent);
+}

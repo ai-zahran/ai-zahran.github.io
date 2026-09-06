@@ -1,0 +1,200 @@
+---
+import type { GetStaticPaths } from 'astro';
+import { render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getPosts, formatDate, isoDate, type Post } from '../../lib/posts';
+
+interface Props {
+  post: Post;
+  newer: Post | null;
+  older: Post | null;
+}
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const posts = await getPosts();
+  return posts.map((post, i) => ({
+    params: { slug: post.id },
+    props: {
+      post,
+      newer: posts[i - 1] ?? null,
+      older: posts[i + 1] ?? null,
+    },
+  }));
+};
+
+const { post, newer, older } = Astro.props;
+const { Content, headings } = await render(post);
+const toc = headings.filter((h) => h.depth === 2);
+---
+
+<BaseLayout
+  title={post.data.title}
+  description={post.data.description}
+  article={{ published: post.data.date, tags: post.data.tags }}
+>
+  <article>
+    <header class="shell head">
+      <p class="eyebrow">
+        <a href="/blog/" class="link">Writing</a>
+      </p>
+      <h1 class="page-title">{post.data.title}</h1>
+      <p class="byline meta">
+        <time datetime={isoDate(post.data.date)}>{formatDate(post.data.date)}</time>
+        {post.data.draft && <span class="chip draft">Draft</span>}
+      </p>
+      {
+        post.data.tags.length > 0 && (
+          <ul class="tags">
+            {post.data.tags.map((tag) => (
+              <li class="chip">{tag}</li>
+            ))}
+          </ul>
+        )
+      }
+    </header>
+
+    {
+      toc.length > 2 && (
+        <nav class="shell toc" aria-label="On this page">
+          <p class="eyebrow">On this page</p>
+          <ol>
+            {toc.map((heading) => (
+              <li>
+                <a href={`#${heading.slug}`} class="link">
+                  {heading.text}
+                </a>
+              </li>
+            ))}
+          </ol>
+        </nav>
+      )
+    }
+
+    <div class="shell">
+      <div class="prose">
+        <Content />
+      </div>
+    </div>
+  </article>
+
+  <nav class="shell pager" aria-label="More posts">
+    {
+      older ? (
+        <a href={`/blog/${older.id}/`} class="step">
+          <span class="eyebrow">Older</span>
+          <span class="step-title">{older.data.title}</span>
+        </a>
+      ) : (
+        <span />
+      )
+    }
+    {
+      newer && (
+        <a href={`/blog/${newer.id}/`} class="step next">
+          <span class="eyebrow">Newer</span>
+          <span class="step-title">{newer.data.title}</span>
+        </a>
+      )
+    }
+  </nav>
+</BaseLayout>
+
+<style>
+  .head {
+    padding-block: clamp(2.5rem, 7vw, 4rem) 0;
+  }
+
+  .head > *,
+  .toc > * {
+    max-width: var(--width-prose);
+  }
+
+  .head .eyebrow {
+    display: block;
+    margin-block-end: 0.75rem;
+  }
+
+  .page-title {
+    font-size: clamp(1.875rem, 1.2rem + 2.4vw, 2.75rem);
+  }
+
+  .byline {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-block-start: 1rem;
+  }
+
+  .draft {
+    color: var(--signal);
+    border-color: var(--signal);
+  }
+
+  .tags {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-block-start: 1rem;
+  }
+
+  .toc {
+    margin-block: 2.5rem 0;
+  }
+
+  .toc ol {
+    list-style: none;
+    counter-reset: toc;
+    border-inline-start: 1px solid var(--rule);
+    margin-block-start: 0.75rem;
+  }
+
+  .toc li {
+    padding-inline-start: 1rem;
+    padding-block: 0.2rem;
+    font-size: 0.9375rem;
+  }
+
+  .head + .shell .prose,
+  .toc + .shell .prose {
+    padding-block: 2.5rem clamp(3rem, 6vw, 5rem);
+  }
+
+  .pager {
+    display: grid;
+    gap: 1.5rem;
+    padding-block: 2rem clamp(3rem, 6vw, 5rem);
+    border-top: 1px solid var(--rule);
+  }
+
+  .step {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    text-decoration: none;
+    max-width: 24rem;
+  }
+
+  .step-title {
+    font-family: var(--font-display);
+    font-weight: 600;
+    line-height: 1.25;
+    transition: color 150ms ease;
+  }
+
+  .step:hover .step-title {
+    color: var(--accent);
+  }
+
+  @media (min-width: 40rem) {
+    .pager {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .next {
+      text-align: end;
+      justify-self: end;
+      align-items: flex-end;
+    }
+  }
+</style>

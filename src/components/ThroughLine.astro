@@ -1,0 +1,119 @@
+---
+import { eras } from '../data/experience';
+---
+
+<ol class="rail">
+  {
+    eras.map((era, i) => (
+      <li class="era" style={`--i:${i}`}>
+        <span class="node" aria-hidden="true" />
+        <p class="years meta">{era.years}</p>
+        <h3 class="name">{era.title}</h3>
+        <p class="summary">{era.summary}</p>
+        <ul class="artifacts">
+          {era.artifacts.map((artifact) => (
+            <li class="chip">{artifact}</li>
+          ))}
+        </ul>
+      </li>
+    ))
+  }
+</ol>
+
+<style>
+  .rail {
+    list-style: none;
+    display: grid;
+    gap: 2.5rem;
+    counter-reset: era;
+  }
+
+  .era {
+    position: relative;
+    padding-inline-start: 1.9rem;
+  }
+
+  /* The rail itself: a vertical spine on narrow screens. */
+  .era::before {
+    content: '';
+    position: absolute;
+    inset-inline-start: 0.3rem;
+    inset-block: 0.55rem -2.5rem;
+    width: 1px;
+    background: linear-gradient(to bottom, var(--signal), color-mix(in oklab, var(--signal) 25%, transparent));
+  }
+
+  .era:last-child::before {
+    display: none;
+  }
+
+  .node {
+    position: absolute;
+    inset-inline-start: 0;
+    inset-block-start: 0.3rem;
+    width: 0.625rem;
+    height: 0.625rem;
+    border-radius: 50%;
+    background: var(--bg);
+    border: 1.5px solid var(--signal);
+  }
+
+  .era:last-child .node {
+    background: var(--signal);
+  }
+
+  .years {
+    color: var(--signal);
+  }
+
+  .name {
+    font-size: 1.375rem;
+    margin-block-start: 0.35rem;
+  }
+
+  .summary {
+    color: var(--muted);
+    margin-block-start: 0.4rem;
+    max-width: 26rem;
+  }
+
+  .artifacts {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-block-start: 0.9rem;
+  }
+
+  /* Above 52rem the spine turns horizontal and the eras read left to right. */
+  @media (min-width: 52rem) {
+    .rail {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0 2.5rem;
+    }
+
+    .era {
+      padding-inline-start: 0;
+      padding-block-start: 1.75rem;
+    }
+
+    .era::before {
+      inset-inline: 0.75rem -2.5rem;
+      inset-block: 0.3rem auto;
+      width: auto;
+      height: 1px;
+      background: linear-gradient(to right, var(--signal), color-mix(in oklab, var(--signal) 25%, transparent));
+    }
+
+    .era:last-child::before {
+      display: block;
+      inset-inline-end: auto;
+      width: 0;
+    }
+
+    .node {
+      inset-block-start: 0;
+      inset-inline-start: 0;
+    }
+  }
+</style>

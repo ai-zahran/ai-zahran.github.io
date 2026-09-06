@@ -1,0 +1,84 @@
+---
+// Explicit light/dark switch. Without a stored choice the OS preference wins,
+// which is why the button reports the theme it will switch *to*.
+---
+
+<button type="button" class="toggle" data-theme-toggle aria-label="Switch colour theme">
+  <svg class="icon sun" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6">
+    <circle cx="12" cy="12" r="4.2" />
+    <path
+      stroke-linecap="round"
+      d="M12 2.5v2.2M12 19.3v2.2M4.2 4.2l1.6 1.6M18.2 18.2l1.6 1.6M2.5 12h2.2M19.3 12h2.2M4.2 19.8l1.6-1.6M18.2 5.8l1.6-1.6"
+    />
+  </svg>
+  <svg class="icon moon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6">
+    <path stroke-linecap="round" stroke-linejoin="round" d="M20 14.2A8.2 8.2 0 0 1 9.8 4a8.4 8.4 0 1 0 10.2 10.2Z" />
+  </svg>
+</button>
+
+<style>
+  .toggle {
+    display: grid;
+    place-items: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+    background: transparent;
+    color: var(--muted);
+    cursor: pointer;
+    transition: color 150ms ease, border-color 150ms ease;
+  }
+
+  .toggle:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+  }
+
+  .icon {
+    width: 1.05rem;
+    height: 1.05rem;
+    grid-area: 1 / 1;
+  }
+
+  /* Show the icon for the theme the button switches to. */
+  .moon {
+    display: none;
+  }
+
+  :global(:root[data-theme='dark']) .sun {
+    display: none;
+  }
+
+  :global(:root[data-theme='dark']) .moon {
+    display: block;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :global(:root:not([data-theme='light'])) .sun {
+      display: none;
+    }
+    :global(:root:not([data-theme='light'])) .moon {
+      display: block;
+    }
+  }
+</style>
+
+<script>
+  const root = document.documentElement;
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+
+  const current = () => root.dataset.theme ?? (prefersDark.matches ? 'dark' : 'light');
+
+  document.querySelectorAll<HTMLButtonElement>('[data-theme-toggle]').forEach((button) => {
+    button.addEventListener('click', () => {
+      const next = current() === 'dark' ? 'light' : 'dark';
+      root.dataset.theme = next;
+      try {
+        localStorage.setItem('theme', next);
+      } catch {
+        /* A rejected write only costs persistence, not the switch itself. */
+      }
+    });
+  });
+</script>

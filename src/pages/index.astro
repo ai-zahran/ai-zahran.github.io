@@ -1,0 +1,272 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ThroughLine from '../components/ThroughLine.astro';
+import RoleItem from '../components/RoleItem.astro';
+import PublicationItem from '../components/PublicationItem.astro';
+import PostCard from '../components/PostCard.astro';
+import { roles, skills } from '../data/experience';
+import { publications } from '../data/publications';
+import { site, links } from '../data/site';
+import { getPosts } from '../lib/posts';
+
+const featured = roles.filter((role) => role.featured);
+const recent = (await getPosts()).slice(0, 3);
+const quickLinks = links.filter((link) => link.label !== 'Email');
+---
+
+<BaseLayout>
+  <section class="shell hero">
+    <div class="intro">
+      <p class="eyebrow">{site.role} · {site.location}</p>
+      <h1 class="display">Ahmed<br />Zahran</h1>
+      <p class="lede thesis">
+        For ten years I’ve worked on one problem in three costumes: pulling structure out of
+        signal that doesn’t have any. Phonemes out of audio, facts out of documents, answers out
+        of an enterprise’s own tangled data.
+      </p>
+      <p class="now">
+        Right now that means <strong>production LLM systems</strong> at an early-stage startup —
+        multi-agent orchestration, retrieval that survives real customer data, and knowledge
+        graphs holding it together.
+      </p>
+
+      <div class="actions">
+        <a href="/work/" class="button">See the work</a>
+        <a href={`mailto:${site.email}`} class="button ghost">Email me</a>
+      </div>
+
+      <ul class="elsewhere">
+        {
+          quickLinks.map((link) => (
+            <li>
+              <a href={link.href} class="link">
+                {link.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+
+    <figure class="portrait">
+      <img src={site.portrait} alt="Ahmed Zahran" width="640" height="640" loading="eager" />
+    </figure>
+  </section>
+
+  <section class="shell section">
+    <header class="head">
+      <p class="eyebrow">The through-line</p>
+      <h2 class="section-title">Same problem, three eras of tooling</h2>
+    </header>
+    <ThroughLine />
+  </section>
+
+  <section class="shell section">
+    <header class="head">
+      <p class="eyebrow">Selected work</p>
+      <h2 class="section-title">Where I’ve done it</h2>
+    </header>
+    <div class="list">
+      {featured.map((role) => <RoleItem role={role} compact />)}
+    </div>
+    <a href="/work/" class="more link">Full work history →</a>
+  </section>
+
+  <section class="shell section">
+    <header class="head">
+      <p class="eyebrow">Research</p>
+      <h2 class="section-title">Published work</h2>
+    </header>
+    <div class="list">
+      {publications.map((publication) => <PublicationItem publication={publication} compact />)}
+    </div>
+    <a href="/research/" class="more link">Research and education →</a>
+  </section>
+
+  <section class="shell section">
+    <header class="head">
+      <p class="eyebrow">Toolkit</p>
+      <h2 class="section-title">What I reach for</h2>
+    </header>
+    <dl class="skills">
+      {
+        skills.map((skill) => (
+          <div class="skill">
+            <dt class="eyebrow">{skill.group}</dt>
+            <dd>
+              <ul>
+                {skill.items.map((item) => (
+                  <li class="chip">{item}</li>
+                ))}
+              </ul>
+            </dd>
+          </div>
+        ))
+      }
+    </dl>
+  </section>
+
+  {
+    recent.length > 0 && (
+      <section class="shell section">
+        <header class="head">
+          <p class="eyebrow">Writing</p>
+          <h2 class="section-title">Recent posts</h2>
+        </header>
+        <div class="list">
+          {recent.map((post) => (
+            <PostCard post={post} />
+          ))}
+        </div>
+        <a href="/blog/" class="more link">
+          All posts →
+        </a>
+      </section>
+    )
+  }
+</BaseLayout>
+
+<style>
+  .hero {
+    display: grid;
+    gap: clamp(2.5rem, 6vw, 4rem);
+    /* The next section carries its own generous top padding, so the hero only
+       needs breathing room above. */
+    padding-block: clamp(3rem, 8vw, 5rem) clamp(1rem, 3vw, 2rem);
+    align-items: start;
+  }
+
+  .display {
+    margin-block: 1rem 1.75rem;
+  }
+
+  .thesis {
+    max-width: 34rem;
+    text-wrap: pretty;
+  }
+
+  .now {
+    margin-block-start: 1.25rem;
+    max-width: 34rem;
+    color: var(--muted);
+  }
+
+  .now strong {
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-block-start: 2rem;
+  }
+
+  .button {
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    letter-spacing: 0.04em;
+    padding: 0.6rem 1.1rem;
+    border: 1px solid var(--accent);
+    border-radius: 3px;
+    background: var(--accent);
+    color: var(--bg);
+    text-decoration: none;
+    transition: background 150ms ease, color 150ms ease;
+  }
+
+  .button:hover {
+    background: transparent;
+    color: var(--accent);
+  }
+
+  .button.ghost {
+    background: transparent;
+    color: var(--accent);
+    border-color: var(--rule);
+  }
+
+  .button.ghost:hover {
+    border-color: var(--accent);
+  }
+
+  .elsewhere {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.25rem;
+    margin-block-start: 1.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+  }
+
+  .portrait {
+    justify-self: start;
+    max-width: 20rem;
+    width: 100%;
+  }
+
+  .portrait img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: 3px;
+    border: 1px solid var(--rule);
+    /* Nudges the photo toward the page's violet cast without tinting the face. */
+    filter: saturate(0.95);
+  }
+
+  .head {
+    margin-block-end: 2rem;
+  }
+
+  .head .eyebrow {
+    display: block;
+    margin-block-end: 0.5rem;
+  }
+
+  .list {
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .more {
+    display: inline-block;
+    margin-block-start: 1.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+  }
+
+  .skills {
+    display: grid;
+    gap: 1.75rem;
+  }
+
+  .skill dd ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-block-start: 0.65rem;
+  }
+
+  @media (min-width: 52rem) {
+    .hero {
+      grid-template-columns: minmax(0, 1fr) auto;
+    }
+
+    .portrait {
+      max-width: 19rem;
+      justify-self: end;
+      /* Sits level with the name rather than the eyebrow above it. */
+      margin-block-start: 3.5rem;
+    }
+
+    .skills {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem 3rem;
+    }
+  }
+</style>

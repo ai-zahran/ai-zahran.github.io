@@ -1,4 +1,17 @@
-_site
-.sass-cache
-.jekyll-metadata
-**/.DS_Store
+# build output
+dist/
+.astro/
+
+# dependencies
+node_modules/
+
+# environment
+.env
+.env.production
+
+# macOS
+.DS_Store
+
+# editors
+.vscode/
+.idea/

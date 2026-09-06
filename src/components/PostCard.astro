@@ -1,0 +1,84 @@
+---
+import { formatDate, isoDate, type Post } from '../lib/posts';
+
+interface Props {
+  post: Post;
+}
+
+const { post } = Astro.props;
+const href = `/blog/${post.id}/`;
+---
+
+<article class="post">
+  <time class="date meta" datetime={isoDate(post.data.date)}>{formatDate(post.data.date)}</time>
+
+  <div class="body">
+    <h3 class="title">
+      <a href={href} class="stretch">{post.data.title}</a>
+      {post.data.draft && <span class="chip draft">Draft</span>}
+    </h3>
+    {post.data.description && <p class="excerpt">{post.data.description}</p>}
+  </div>
+</article>
+
+<style>
+  .post {
+    position: relative;
+    display: grid;
+    gap: 0.3rem 2.5rem;
+    padding-block: 1.5rem;
+    border-top: 1px solid var(--rule);
+    transition: background 150ms ease;
+  }
+
+  .post:hover {
+    background: color-mix(in oklab, var(--accent) 4%, transparent);
+  }
+
+  .date {
+    white-space: nowrap;
+    padding-block-start: 0.25rem;
+  }
+
+  .title {
+    font-size: 1.1875rem;
+    font-weight: 600;
+    line-height: 1.3;
+    max-width: 40rem;
+  }
+
+  /* The whole row is the click target; the heading link supplies the label. */
+  .stretch::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+  }
+
+  .post:hover .title {
+    color: var(--accent);
+  }
+
+  .draft {
+    margin-inline-start: 0.5rem;
+    vertical-align: middle;
+    color: var(--signal);
+    border-color: var(--signal);
+  }
+
+  .excerpt {
+    margin-block-start: 0.4rem;
+    color: var(--muted);
+    font-size: 0.9375rem;
+    max-width: 40rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  @media (min-width: 46rem) {
+    .post {
+      grid-template-columns: 10rem 1fr;
+    }
+  }
+</style>

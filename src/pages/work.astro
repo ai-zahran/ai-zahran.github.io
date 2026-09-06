@@ -1,0 +1,100 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import RoleItem from '../components/RoleItem.astro';
+import { roles, skills } from '../data/experience';
+import { site } from '../data/site';
+---
+
+<BaseLayout
+  title="Work"
+  description="Ten years of machine learning and NLP work — agentic LLM systems, knowledge graphs and Graph RAG at Implicit, analytics at DataPlus, and Arabic speech research before that."
+>
+  <section class="shell head">
+    <p class="eyebrow">Work</p>
+    <h1 class="page-title">Ten years, in order</h1>
+    <p class="lede measure">
+      Machine learning and NLP since 2016 — Arabic speech first, then summarization and knowledge
+      graphs, now agentic LLM systems. Where a role produced a paper, the line beneath it says so.
+    </p>
+    <a href={`mailto:${site.email}`} class="cv link">Email me for a CV</a>
+  </section>
+
+  <section class="shell roles">
+    {roles.map((role) => <RoleItem role={role} />)}
+  </section>
+
+  <section class="shell section skills-section">
+    <h2 class="section-title">Toolkit</h2>
+    <dl class="skills">
+      {
+        skills.map((skill) => (
+          <div>
+            <dt class="eyebrow">{skill.group}</dt>
+            <dd>
+              <ul>
+                {skill.items.map((item) => (
+                  <li class="chip">{item}</li>
+                ))}
+              </ul>
+            </dd>
+          </div>
+        ))
+      }
+    </dl>
+  </section>
+</BaseLayout>
+
+<style>
+  .head {
+    padding-block: clamp(2.5rem, 7vw, 4.5rem) 1.5rem;
+  }
+
+  .head .eyebrow {
+    display: block;
+    margin-block-end: 0.75rem;
+  }
+
+  .page-title {
+    margin-block-end: 1.25rem;
+  }
+
+  .cv {
+    display: inline-block;
+    margin-block-start: 1.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+  }
+
+  .roles {
+    padding-block-end: 1rem;
+  }
+
+  .roles :global(.role:first-child) {
+    border-top-color: var(--accent);
+  }
+
+  .skills-section {
+    border-top: 1px solid var(--rule);
+  }
+
+  .skills {
+    display: grid;
+    gap: 1.75rem;
+    margin-block-start: 2rem;
+  }
+
+  .skills dd ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-block-start: 0.65rem;
+  }
+
+  @media (min-width: 52rem) {
+    .skills {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem 3rem;
+    }
+  }
+</style>
