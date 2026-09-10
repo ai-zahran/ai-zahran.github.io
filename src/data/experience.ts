@@ -29,7 +29,7 @@ export interface Role {
 export const roles: Role[] = [
   {
     id: 'stealth',
-    title: 'Founding AI Engineer',
+    title: 'Founding AI Engineer (Contract)',
     org: 'Stealth Startup',
     start: 'Dec 2025',
     end: 'Present',
@@ -37,15 +37,22 @@ export const roles: Role[] = [
     points: [
       { text: 'Built and deployed LLM systems for 14+ isolated enterprise customers.' },
       {
-        text: 'Co-developed a LangChain Deep Agents multi-agent system with memory management for structured and unstructured data retrieval, SaaS integrations, and report generation.',
+        text: 'Co-developed a LangChain Deep Agents multi-agent system with memory management, covering structured and unstructured retrieval, SaaS integrations, and report generation.',
       },
       {
-        text: 'Automated enterprise data onboarding for AI use through schema discovery, embeddings, and metadata preparation, with fault tolerance — reducing onboarding time from hours to minutes.',
+        text: 'Built an integrations agent with read and write access across connected SaaS systems — Google Workspace, Slack, Notion, GitHub, and Linear.',
       },
-      { text: 'Enhanced document generation and editing with reusable skills, validation, and self-repair loops.' },
-      { text: 'Improved retrieval quality using hybrid search, file system facets, and re-ranking.' },
       {
-        text: 'Built a Composio-based SaaS integration for governed access to Google Workspace, Slack, Notion, GitHub, and Linear, with RBAC, human-approval gates, and white-labelled OAuth.',
+        text: 'Delivered the Composio-based integration layer behind it, with per-user RBAC, human approval gates, and white-labelled OAuth.',
+      },
+      {
+        text: 'Raised first-pass document generation success to near 100% through per-format validation loops, visual inspection of rendered output, and self-repair.',
+      },
+      {
+        text: 'Built an automated, fault-tolerant enterprise data onboarding pipeline — schema discovery, embeddings, metadata preparation, and relationship inference — cutting onboarding from hours to minutes.',
+      },
+      {
+        text: 'Improved retrieval quality with hybrid search, re-ranking, and filesystem-structure facets for path-based scoping, reaching near-complete recall on customer-defined evaluation queries.',
       },
     ],
     stack: ['LangChain', 'LangGraph', 'Claude Agent SDK', 'RAG', 'Composio'],
@@ -61,19 +68,30 @@ export const roles: Role[] = [
     featured: true,
     produced: ['factalign'],
     points: [
-      { text: 'Built Graph RAG and question-answering functionality for Implicit’s Answers product.' },
-      { text: 'Introduced LLMs for summarization, knowledge graph construction, and question answering.' },
-      { text: 'Published FactAlign, a knowledge-graph-based hallucination detection system.' },
       {
-        text: 'Fine-tuned LLMs on KG-to-text for entity-centric summarization, surpassing the state of the art.',
+        text: 'Built Graph RAG and question answering for Implicit’s Answers product from scratch on LangGraph and Neo4j.',
+      },
+      {
+        text: 'Raised QA correctness (LLM-judged) by more than 50% on the internal evaluation set by tuning graph retrieval and agent behaviour: grounding answers in customer context, raising clarifying questions only on genuine ambiguity, suppressing irrelevant queries, and enforcing guardrails.',
+      },
+      {
+        text: 'Deployed and served the QA stack on a self-hosted Llama model using vLLM, and later on Amazon Bedrock.',
+      },
+      {
+        text: 'Co-authored FactAlign, a knowledge-graph-alignment method for fact-level hallucination detection, reaching 0.889 F1 on detection and 0.825 F1 on intrinsic/extrinsic classification with no fine-tuning and no repeated sampling.',
+      },
+      {
+        text: 'Fine-tuned LLMs on KG-to-text for entity-centric summarization, surpassing the then state of the art.',
         link: {
           label: 'Read the write-up',
           href: 'https://medium.com/@ahmed.ismail.zahran/kg-to-text-with-llama-2-f2b299c02a48',
         },
       },
-      { text: 'Maintained and expanded the extractive summarization platform for wider use cases.' },
+      {
+        text: 'Introduced LLMs across summarization, knowledge graph construction, and question answering; maintained and extended the extractive summarization platform for new customer use cases.',
+      },
     ],
-    stack: ['Knowledge Graphs', 'Neo4j', 'Graph RAG', 'PyTorch', 'HuggingFace'],
+    stack: ['Knowledge Graphs', 'Neo4j', 'Graph RAG', 'LangGraph', 'vLLM', 'Amazon Bedrock'],
   },
   {
     id: 'dataplus',
@@ -84,7 +102,7 @@ export const roles: Role[] = [
     end: 'Oct 2020',
     points: [
       {
-        text: 'Developed and deployed dashboards and ETL/predictive-analytics workflows for financial, telecom, and government clients.',
+        text: 'Built ETL and predictive-analytics workflows and dashboards for financial, telecom, and government clients.',
       },
     ],
     stack: ['Tableau', 'Alteryx'],
@@ -112,7 +130,7 @@ export const roles: Role[] = [
     end: 'Nov 2018',
     points: [
       {
-        text: 'Co-developed Senteech, a speech emotion classification system for customer service calls in low-resource languages.',
+        text: 'Co-developed Senteech, a speech emotion classification system for customer-service calls in low-resource languages.',
       },
     ],
     stack: ['Scikit-learn', 'TensorFlow', 'openSMILE'],
@@ -134,11 +152,11 @@ export const roles: Role[] = [
     end: 'Aug 2017',
     points: [
       {
-        text: 'Enhanced mispronunciation detection accuracy for Hafss, a Holy Quran recitation training system, by training new Kaldi models based on state-of-the-art architectures and incorporating new data.',
+        text: 'Raised mispronunciation detection accuracy by ~2% for Hafss, a Holy Quran recitation training system, by training Kaldi acoustic models on then state-of-the-art architectures and expanding the training data.',
         link: { label: 'Hafss', href: 'https://rdi-eg.ai/hafss/' },
       },
-      { text: 'Maintained Hafss’s C++ language model toolkit, fixing and expanding its generation rules.' },
-      { text: 'Developed a .NET data annotation tool for the linguistics team.' },
+      { text: 'Maintained and extended Hafss’s C++ language model toolkit, fixing and expanding its generation rules.' },
+      { text: 'Built a .NET annotation tool for the linguistics team.' },
     ],
     stack: ['Kaldi', 'C++', '.NET'],
   },
@@ -179,27 +197,22 @@ export const eras: Era[] = [
 export const skills = [
   { group: 'Programming', items: ['Python', 'Java', 'SQL', 'Bash'] },
   {
-    group: 'ML / NLP',
-    items: [
-      'PyTorch',
-      'HuggingFace',
-      'Scikit-learn',
-      'LangChain',
-      'LangGraph',
-      'Claude Agent SDK',
-      'RAG',
-      'Knowledge Graphs (Neo4j)',
-    ],
+    group: 'LLM and agents',
+    items: ['LangChain', 'LangGraph', 'Claude Agent SDK', 'vLLM', 'Composio'],
   },
+  { group: 'Retrieval and data', items: ['RAG', 'FAISS', 'Qdrant', 'Vertex AI', 'Neo4j'] },
+  { group: 'ML / NLP', items: ['PyTorch', 'HuggingFace', 'Scikit-learn', 'Knowledge Graphs'] },
+  { group: 'Speech and audio', items: ['SpeechBrain', 'Kaldi', 'VariKN', 'openSMILE'] },
   {
-    group: 'Web and Cloud',
+    group: 'Infrastructure',
     items: [
-      'FastAPI',
-      'Litestar',
-      'Flask',
+      'Docker',
+      'Kubernetes',
       'Google Cloud (App Engine, Cloud Run, Cloud Tasks)',
       'Firebase/Firestore',
+      'Logfire',
     ],
   },
+  { group: 'Web', items: ['FastAPI', 'Litestar', 'Flask'] },
   { group: 'Languages', items: ['Arabic (native)', 'English (proficient)'] },
 ];

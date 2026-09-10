@@ -4,7 +4,7 @@ export const site = {
   location: 'Cairo, Egypt',
   url: 'https://ai-zahran.github.io',
   tagline:
-    'AI/ML engineer building production LLM systems — multi-agent orchestration, retrieval over messy enterprise data, and knowledge graphs.',
+    'AI/ML engineer building production LLM systems — multi-agent orchestration, retrieval over messy enterprise data, governed SaaS integrations, and knowledge graphs.',
   /*
    * `portrait` doubles as the Open Graph image, so it stays a JPEG at a stable
    * path; `portraitWebp` is the smaller variant the page itself prefers. Both
